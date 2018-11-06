@@ -7,7 +7,7 @@ if (isset( $_GET["nombre"])) {
 if (isset($_GET["llamamiento"])) {
   $llamamiento= $_GET["llamamiento"];
 }else{
-  $llamamiento= '';
+  $llamamiento= 'invitado';
 }
 
 
