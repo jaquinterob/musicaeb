@@ -5,7 +5,6 @@
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
   inicializaciones();
-  log_ingreso();
 });
 
 function log_ingreso(){
@@ -26,6 +25,7 @@ function log_ingreso(){
 }
 
 function inicializaciones(){
+  log_ingreso();
   validar_usuario();
   jq(".card").addClass('hoverable');
   jq("#contenedor_individual").hide();
@@ -520,7 +520,7 @@ function validar_usuario(){
 }
 
 function bienvenida(){
-  M.toast({html:'Credenciales actuales<br>Usuario: '+jq("#gestor").val()+'<br>Llamamiento: '+jq("#llamamiento").val(),classes:'green'});
+  M.toast({html:'Credenciales actuales<br>Usuario: '+jq("#gestor").val()+'<br>Llamamiento: '+jq("#llamamiento").val()});
 }
 
 function quitar_llamamiento(tipo,llamamiento,barrio){
