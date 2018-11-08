@@ -5,7 +5,30 @@
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
   inicializaciones();
+  log_ingreso();
 });
+
+function log_ingreso(){
+  var datosformulario="ingreso=1&gestor="+jq("#gestor").val();
+  jq.ajax({
+    url:"includes/home_includes.php",
+    type:"POST",
+    data:datosformulario,
+    error:function(jqXHR,text_status,strError){
+      jq(".cargando").hide();
+      M.toast({html:'el error es: '+strError, classes:'red'});
+    },
+    timeout:10000,
+    success:function(data){
+      res=data.split('|');
+      if (res[0]=='1') {
+        M.toast({html:res[1],classes:'blue'});
+      } else {
+        M.toast({html:res[1],classes:'red'});
+      }
+    }
+  });
+}
 
 function inicializaciones(){
   validar_usuario();

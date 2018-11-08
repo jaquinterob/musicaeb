@@ -243,6 +243,16 @@ if (isset($usuario)) {
   }
 }
 
+if (isset($ingreso)) {
+  $sql="INSERT INTO logs_ingresos (usuario,fecha)
+  VALUES ('".$gestor."',now());";
+  if ($connect->query($sql)) {
+    echo '1|Guardado';
+  } else {
+    echo '0|no guardado';
+  }
+}
+
 function seleccionar_icono_coro($h){
   if($h==1){
     return 'icon-green">sentiment_very_satisfied';
