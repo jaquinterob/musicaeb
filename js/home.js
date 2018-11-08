@@ -20,12 +20,7 @@ function log_ingreso(){
     },
     timeout:10000,
     success:function(data){
-      res=data.split('|');
-      if (res[0]=='1') {
-        M.toast({html:res[1],classes:'blue'});
-      } else {
-        M.toast({html:res[1],classes:'red'});
-      }
+    
     }
   });
 }
