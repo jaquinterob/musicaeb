@@ -20,7 +20,7 @@ function log_ingreso(){
     },
     timeout:10000,
     success:function(data){
-    
+    console.log(data);
     }
   });
 }

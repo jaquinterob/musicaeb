@@ -245,11 +245,11 @@ if (isset($usuario)) {
 
 if (isset($ingreso)) {
   $sql="INSERT INTO logs_ingresos (usuario,fecha)
-  VALUES ('".$gestor."',now());";
-  if ($connect->query($sql)) {
-    echo '1|Guardado';
+  VALUES ('".$gestor."',DATE_SUB(now(), INTERVAL 5 HOUR));";
+  $connect->query($sql)
+    echo 'Se guarda correctamente en logs_ingresos';
   } else {
-    echo '0|no guardado';
+    echo 'No se guarda en logs_ingresos';
   }
 }
 
