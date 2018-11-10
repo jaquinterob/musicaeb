@@ -414,6 +414,7 @@ function actualizar_coro(indice_barrio){
 
 function actualizar_llamamiento(tipo,llamamiento,indice_barrio) {
   indice_barrio++;
+  console.log("El indice de Barrio es: " +indice_barrio);
 
   var nombre=jq("#nombre").val();
   var celular=jq("#celular").val();
@@ -524,6 +525,7 @@ function bienvenida(){
 }
 
 function quitar_llamamiento(tipo,llamamiento,barrio){
+  barrio++;
   var nombre='';
   var celular='';
   var nota_gestion='Eliminado';
