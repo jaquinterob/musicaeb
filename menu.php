@@ -10,7 +10,6 @@ if (isset($_GET["llamamiento"])) {
   $llamamiento= 'ninguno';
 }
 
-
 $host= $_SERVER["HTTP_HOST"];
 $url= $_SERVER["REQUEST_URI"];
 $completo= "http://" . $host . $url;
@@ -18,7 +17,7 @@ $completo= "http://" . $host . $url;
  ?>
 <nav>
   <div class="nav-wrapper green">
-    <a href="#!"  class="brand-logo center-align">MusicaEB</a>
+    <a onclick="ingresos()"  class="brand-logo center-align">MusicaEB</a>
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li><a href=<?php $completo  ?>>Inicio</a></li>
@@ -31,7 +30,7 @@ $completo= "http://" . $host . $url;
       <li><a onclick="menu(6)">Guayabal</a></li>
       <li><a onclick="menu(7)">Robledo</a></li>
       <li><a href="gestiones.php">Gestiones</a></li>
-      <li><a style="color:#cbd0c2" href="index.php">Salir</a></li>
+      <li><a style="color:yellow" href="index.php">Salir</a></li>
     </ul>
   </div>
 </nav>
@@ -42,7 +41,7 @@ $completo= "http://" . $host . $url;
         <img src="img/bannerapp.png">
       </div>
       <a href="#user"><img class="circle" src="img/clave.png"></a>
-      <a href="#name"><span class="white-text name">Usuario actual:&nbsp; <em><?php echo $gestor; ?></em></span></a>
+      <a onclick="ingresos()" href="#name"><span class="white-text name"> Usuario actual:&nbsp; <em><?php echo $gestor; ?></em></span></a>
       <a href="#email"><span  class="white-text email"><?php echo $llamamiento; ?></span></a>
     </div></li>
   <li><a href=<?php $completo  ?>><i class="material-icons">home</i>Inicio</a></li>

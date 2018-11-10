@@ -578,3 +578,9 @@ function quitar_llamamiento(tipo,llamamiento,barrio){
 
   }
 }
+
+function ingresos(){
+    if (jq("#gestor").val()=='john.quintero') {
+        location.href ="ingresos.php";
+    }
+}
