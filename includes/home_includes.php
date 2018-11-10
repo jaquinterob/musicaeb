@@ -490,7 +490,7 @@ function nombrar_barrio($n){
     case '6':
     return "Guayabal";
     break;
-    case '6':
+    case '7':
     return "Robledo";
     break;
   }
