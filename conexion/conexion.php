@@ -3,7 +3,7 @@
 # @Last modified time: 2018-10-14T21:49:44-05:00
 
 
-// prueba con gitignore
+
 
 
 $user="root";
