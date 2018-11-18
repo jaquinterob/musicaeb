@@ -10,7 +10,9 @@ function inicializaciones(){
 }
 
 function cargar_gestiones(){
-  var datosformulario="token_gestiones=1";
+  // console.log('gestor actual = '+jq("#gestor_verde").va());
+
+  var datosformulario="token_gestiones=1&gestor="+jq("#gestor_verde").val();
   jq.ajax({
     url:"includes/gestiones_includes.php",
     type:"POST",

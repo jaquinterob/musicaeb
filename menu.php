@@ -29,7 +29,8 @@ $completo= "http://" . $host . $url;
       <li><a onclick="menu(5)">Floresta</a></li>
       <li><a onclick="menu(6)">Guayabal</a></li>
       <li><a onclick="menu(7)">Robledo</a></li>
-      <li><a href="gestiones.php">Gestiones</a></li>
+      <li><a onclick="enviar_agestion()">Gestiones</a></li>
+      <!-- <li><a href="gestiones.php">Gestiones</a></li> -->
       <li><a style="color:yellow" href="index.php">Salir</a></li>
     </ul>
   </div>
@@ -41,7 +42,7 @@ $completo= "http://" . $host . $url;
         <img src="img/bannerapp.png">
       </div>
       <a href="#user"><img class="circle" src="img/clave.png"></a>
-      <a onclick="ingresos()" href="#name"><span class="white-text name"> Usuario actual:&nbsp; <em><?php echo $gestor; ?></em></span></a>
+      <a onclick="ingresos()" href="#name"><span class="white-text name"> Usuario actual:&nbsp; <em><?php echo strtolower($gestor); ?></em></span></a>
       <a href="#email"><span  class="white-text email"><?php echo $llamamiento; ?></span></a>
     </div></li>
   <li><a href=<?php $completo  ?>><i class="material-icons">home</i>Inicio</a></li>
@@ -53,6 +54,7 @@ $completo= "http://" . $host . $url;
   <li><a onclick="menu(5)" ><i class="material-icons">near_me</i>Floresta</a></li>
   <li><a onclick="menu(6)" ><i class="material-icons">near_me</i>Guayabal</a></li>
   <li><a onclick="menu(7)" ><i class="material-icons">near_me</i>Robledo</a></li>
-  <li><a href="gestiones.php" ><i class="material-icons">work</i>Gestiones</a></li>
+  <li><a   onclick="enviar_agestion()" ><i class="material-icons">work</i>Gestiones</a></li>
+  <!-- <li><a  href="gestiones.php" onclick="enviar_agestion()" ><i class="material-icons">work</i>Gestiones</a></li> -->
   <li><a href="index.php" ><i class="material-icons">exit_to_app</i>Salir</a></li>
 </ul>

@@ -1,10 +1,10 @@
 <?php
+$gestor=$_GET['gestor'];
 include('plantilla/plantilla.html');
-
-
 ?>
 
 <link rel="stylesheet" href="css/gestiones.css">
+<input id="gestor_verde" type="hidden" value="<?php echo $gestor;  ?>">
     <div id="contenedor_gestiones" class="row">
 
     </div>

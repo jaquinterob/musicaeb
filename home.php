@@ -5,7 +5,7 @@ include('menu.php');
 ?>
 <link  rel="icon"   href="img/clave.png" type="image/png">
 
-<input id="gestor" type="hidden" name="opcion" value="<?php echo $gestor; ?>">
+<input id="gestor" type="hidden" name="opcion" value="<?php echo strtolower($gestor); ?>">
 <input id="llamamiento" type="hidden" name="opcion" value="<?php echo $llamamiento; ?>">
 <div id="contenedor_inicio" class="ocultar">
     <div class="row">

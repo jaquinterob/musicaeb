@@ -9,9 +9,13 @@ function inicializaciones(){
 }
 
 function login(){
+var usuario=jq("#usuario").val();
+usuario=usuario.toLowerCase();
+var contrasena=jq("#contrasena").val();
+contrasena=contrasena.toLowerCase();
   jq(".cargando").show();
   if (validar_login()) {
-    var datosformulario="usuario="+jq("#usuario").val()+"&contrasena="+jq("#contrasena").val();
+    var datosformulario="usuario="+usuario+"&contrasena="+contrasena;
     jq.ajax({
       url:"includes/home_includes.php",
       type:"POST",
@@ -22,6 +26,7 @@ function login(){
       },
       timeout:10000,
       success:function(data){
+  data=data.trim();
         var res=data.split("|");
         if (res[0]=='1') {
            window.location='home.php?llamamiento='+res[1]+'&nombre='+jq("#usuario").val();
@@ -35,7 +40,6 @@ function login(){
     jq(".cargando").hide();
     M.toast({html:'Datos incompletos',classes:'red'});
   }
-
 }
 
 function validar_login(){

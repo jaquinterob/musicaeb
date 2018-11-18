@@ -13,11 +13,14 @@ if (isset($token_gestiones)) {
     if (mysqli_num_rows($res)>0) {
         while ($registro=mysqli_fetch_assoc($res)) {
             echo '<div class="col s12 m6 l3">
-
             <div style="margin:10px" class=" center-align">
-            <div class="card-content green-text">
-            <div class="col s12 green ">
-            <span class=" card-title white-text">Gestion #'.$registro['id_log'].'</span>
+            <div class="card-content green-text">';
+            if ($registro['culpable']==$gestor) {
+              echo '  <div class="col s12 blue ">';
+            }else{
+              echo '  <div class="col s12 green ">';
+            }
+          echo '  <span class=" card-title white-text">Gestion #'.$registro['id_log'].'</span>
             </div>
             <table  >
             <tbody style="color:grey">
@@ -39,7 +42,7 @@ if (isset($token_gestiones)) {
             </tr>
             <tr>
             <td  >Gestor:</td>
-            <td  >'.$registro['culpable'].'</td>
+            <td  ><em>'.$registro['culpable'].'</em></td>
             </tr>
             </tbody>
             </table>

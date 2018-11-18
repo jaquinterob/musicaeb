@@ -13,21 +13,21 @@ if (isset($token_gestiones)) {
     if (mysqli_num_rows($res)>0) {
         while ($registro=mysqli_fetch_assoc($res)) {
             echo '<div class="col s12 m6 l3">
-
             <div style="margin:10px" class=" center-align">
-            <div class="card-content green-text">
-            <div class="col s12 grey ">
-            <span class=" card-title white-text">Ingreso #'.$registro['id'].'</span>
+            <div class="card-content green-text">';
+            if ($registro['usuario']=='john.quintero' || $registro['usuario']=='John.quintero' ) {
+              echo '<div class="col s12 grey ">';
+            }else {
+              echo '<div class="col s12 blue ">';
+            }
+          echo '<span class=" card-title white-text">Ingreso #'.$registro['id'].'</span>
             </div>
             <table  >
             <tbody style="color:grey">
-
-
             <tr>
             <td  >Fecha:</td>
             <td  >'.$registro['fecha'].'</td>
             </tr>
-
             <tr>
             <td  >Gestor:</td>
             <td  >'.$registro['usuario'].'</td>

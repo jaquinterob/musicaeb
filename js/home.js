@@ -586,3 +586,8 @@ function ingresos(){
         location.href ="ingresos.php";
     }
 }
+
+
+function enviar_agestion(){
+   window.location='gestiones.php?gestor='+jq("#gestor").val();
+}
