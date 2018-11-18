@@ -19,7 +19,7 @@ function log_ingreso(){
     },
     timeout:10000,
     success:function(data){
-    console.log(data);
+    console.log(data.trim());
     }
   });
 }
@@ -162,6 +162,7 @@ function menu(item) {
     },
     timeout:10000,
     success:function(datar){
+      datar=datar.trim();
       datar=datar.split('|');
       setTimeout(function() {
         jq("#contenedor_individual").html(datar[0]);
@@ -284,6 +285,7 @@ function abrir_modal1(tipo,titulo,barrio,llamamiento) {
       },
       timeout:10000,
       success:function(data){
+        data=data.trim();
         var res=data.split('|');
         jq("#nombre").val(res[0]);
         jq("#celular").val(res[1]);
@@ -308,6 +310,7 @@ function abrir_modal1(tipo,titulo,barrio,llamamiento) {
       },
       timeout:10000,
       success:function(data){
+        data=data.trim();
         var res=data.split('|');
         jq("#nombre").val(res[0]);
         jq("#celular").val(res[1]);
@@ -342,6 +345,7 @@ function abrir_modal2(nombre,titulo,barrio) {
     timeout:10000,
     success:function(data){
       console.log(data);
+      data=data.trim();
       var res=data.split('|');
       console.log('estado del coro es: '+res[0]);
       if (res[0]=='1') {
@@ -396,6 +400,7 @@ function actualizar_coro(indice_barrio){
       },
       timeout:10000,
       success:function(data){
+        data=data.trim();
         res=data.split('|');
         if (res[0]==1) {
           M.toast({html:res[1], classes:'green'});
@@ -433,6 +438,7 @@ function actualizar_llamamiento(tipo,llamamiento,indice_barrio) {
         },
         timeout:10000,
         success:function(data){
+          data=data.trim();
           res=data.split('|');
           if (res[0]=='1') {
             M.toast({html:res[1],classes:'green'});
@@ -458,6 +464,7 @@ function actualizar_llamamiento(tipo,llamamiento,indice_barrio) {
           },
           timeout:10000,
           success:function(data){
+            data=data.trim();
             res=data.split('|');
             if (res[0]=='1') {
               M.toast({html:res[1],classes:'green'});
@@ -543,6 +550,7 @@ function quitar_llamamiento(tipo,llamamiento,barrio){
       },
       timeout:10000,
       success:function(data){
+        data=data.trim();
         res=data.split('|');
         if (res[0]=='1') {
           M.toast({html:res[1],classes:'green'});
@@ -566,6 +574,7 @@ function quitar_llamamiento(tipo,llamamiento,barrio){
       },
       timeout:10000,
       success:function(data){
+        data=data.trim();
         res=data.split('|');
         if (res[0]=='1') {
           M.toast({html:res[1],classes:'green'});
