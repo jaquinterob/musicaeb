@@ -1,5 +1,5 @@
 <?php
-include('plantilla/plantilla.html');
+include('plantilla/plantilla.php');
 
 
 ?>

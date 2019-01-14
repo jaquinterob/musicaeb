@@ -8,6 +8,8 @@ function inicializaciones(){
   jq(".cargando").hide();
 }
 
+
+
 function login(){
 var usuario=jq("#usuario").val();
 usuario=usuario.toLowerCase();

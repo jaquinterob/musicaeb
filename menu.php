@@ -16,7 +16,7 @@ $completo= "http://" . $host . $url;
 
  ?>
 <nav>
-  <div class="nav-wrapper green">
+  <div class="nav-wrapper <?php echo $color ?>">
     <a onclick="ingresos()"  class="brand-logo center-align">MusicaEB</a>
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
@@ -39,7 +39,7 @@ $completo= "http://" . $host . $url;
 <ul class="sidenav" id="mobile-demo">
   <li><div class="user-view">
       <div class="background">
-        <img src="img/bannerapp.png">
+        <img src="img/banner<?php echo $color ?>.png">
       </div>
       <a href="#user"><img class="circle" src="img/clave.png"></a>
       <a onclick="ingresos()" href="#name"><span class="white-text name"> Usuario actual:&nbsp; <em><?php echo strtolower($gestor); ?></em></span></a>

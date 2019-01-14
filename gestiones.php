@@ -1,6 +1,7 @@
 <?php
 $gestor=$_GET['gestor'];
-include('plantilla/plantilla.html');
+include('plantilla/plantilla.php');
+
 ?>
 
 <link rel="stylesheet" href="css/gestiones.css">

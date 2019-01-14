@@ -1,18 +1,21 @@
+<?php
+include('plantilla/plantilla.php');
+
+?>
+
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title>Inicio MEB</title>
   <link  rel="icon"   href="img/clave.png" type="image/png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="css/estilo.css">
-  <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
 </head>
   <body>
     <div class="row">
@@ -35,7 +38,7 @@
       </div>
       </div>
       <div class="card-action right-align">
-      <a onclick="login()" class="waves-effect waves-light pulse btn-small green">Entrar</a>
+      <a onclick="login()" class="waves-effect waves-light pulse btn-small <?php echo $color ?>">Entrar</a>
       </div>
     </div>
   </div>

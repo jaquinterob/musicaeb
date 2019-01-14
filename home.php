@@ -1,6 +1,6 @@
 
 <?php
-include('plantilla/plantilla.html');
+include('plantilla/plantilla.php');
 include('menu.php');
 ?>
 <link  rel="icon"   href="img/clave.png" type="image/png">
@@ -37,7 +37,7 @@ include('menu.php');
 </div>
 <div id="contenedor_individuales_titulo" class="center-align ocultar">
     <br>
-    <span style="color:#4CAF50; font-size: 25px" id="contenedor_titulo"></span>
+    <span class="<?php echo $color ?>-text" style=" font-size: 25px" id="contenedor_titulo"></span>
     <hr>
 </div>
 <div id="contenedor_individual" class="row ocultar"></div>

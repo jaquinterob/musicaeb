@@ -6,6 +6,12 @@ foreach($_POST as $nombre_campo => $valor){
   eval($asignacion);
 }
 
+$sql="SELECT * FROM colores WHERE activo='1';";
+$res=$connect->query($sql);
+$row=$res->fetch_assoc();
+$color=$row['color'];
+$color_html=$row['color_html'];
+
 if(isset($chart_llamamientos)){
   $sql="SELECT * FROM `barrios_llamamientos`";
   $res=$connect->query($sql);
@@ -39,32 +45,32 @@ if (isset($llamamientos)) {
     <tr>
     <td>Asturias</td>
     <td>'.$ast.'/6</td>
-    <td><i class="material-icons '.seleccionar_icono_llamamiento($ast).'</i></td>
+    <td>'.seleccionar_icono_llamamiento($ast).'</i></td>
     </tr>
     <tr>
     <td>Belén</td>
     <td>'.$bel.'/6</td>
-    <td><i class="material-icons '.seleccionar_icono_llamamiento($bel).'</i></td>    </tr>
+    <td>'.seleccionar_icono_llamamiento($bel).'</i></td>    </tr>
     <tr>
     <td>Buenos Aires</td>
     <td>'.$bue.'/6</td>
-    <td><i class="material-icons '.seleccionar_icono_llamamiento($bue).'</i></td>    </tr>
+    <td>'.seleccionar_icono_llamamiento($bue).'</i></td>    </tr>
     <tr>
     <td>Envigado</td>
     <td>'.$env.'/6</td>
-    <td><i class="material-icons '.seleccionar_icono_llamamiento($env).'</i></td>    </tr>
+    <td>'.seleccionar_icono_llamamiento($env).'</i></td>    </tr>
     <tr>
     <td>Floresta</td>
     <td>'.$flo.'/6</td>
-    <td><i class="material-icons '.seleccionar_icono_llamamiento($flo).'</i></td>    </tr>
+    <td>'.seleccionar_icono_llamamiento($flo).'</i></td>    </tr>
     <tr>
     <td>Guayabal</td>
     <td>'.$gua.'/6</td>
-    <td><i class="material-icons '.seleccionar_icono_llamamiento($gua).'</i></td>    </tr>
+    <td>'.seleccionar_icono_llamamiento($gua).'</i></td>    </tr>
     <tr>
     <td>Robledo</td>
     <td>'.$rob.'/6</td>
-    <td><i class="material-icons '.seleccionar_icono_llamamiento($rob).'</i></td>    </tr>
+    <td>'.seleccionar_icono_llamamiento($rob).'</i></td>    </tr>
     </tbody>';
   }
 }
@@ -81,31 +87,31 @@ if (isset($coros)) {
     echo '          <tbody >
     <tr>
     <td>Asturias</td>
-    <td><i class="material-icons '.seleccionar_icono_coro($yo[0]['coro_activo']).'</i></td>
+    <td>'.seleccionar_icono_coro($yo[0]['coro_activo']).'</i></td>
     </tr>
     <tr>
     <td>Belén</td>
-    <td><i class="material-icons '.seleccionar_icono_coro($yo[1]['coro_activo']).'</i></td>
+    <td>'.seleccionar_icono_coro($yo[1]['coro_activo']).'</i></td>
     </tr>
     <tr>
     <td>Buenos Aires</td>
-    <td><i class="material-icons '.seleccionar_icono_coro($yo[2]['coro_activo']).'</i></td>
+    <td>'.seleccionar_icono_coro($yo[2]['coro_activo']).'</i></td>
     </tr>
     <tr>
     <td>Envigado</td>
-    <td><i class="material-icons '.seleccionar_icono_coro($yo[3]['coro_activo']).'</i></td>
+    <td>'.seleccionar_icono_coro($yo[3]['coro_activo']).'</i></td>
     </tr>
     <tr>
     <td>Floresta</td>
-    <td><i class="material-icons '.seleccionar_icono_coro($yo[4]['coro_activo']).'</i></td>
+    <td>'.seleccionar_icono_coro($yo[4]['coro_activo']).'</i></td>
     </tr>
     <tr>
     <td>Guayabal</td>
-    <td><i class="material-icons '.seleccionar_icono_coro($yo[5]['coro_activo']).'</i></td>
+    <td>'.seleccionar_icono_coro($yo[5]['coro_activo']).'</i></td>
     </tr>
     <tr>
     <td>Robledo</td>
-    <td><i class="material-icons '.seleccionar_icono_coro($yo[6]['coro_activo']).'</i></td>
+    <td>'.seleccionar_icono_coro($yo[6]['coro_activo']).'</i></td>
     </tr>
     </tbody>';
   }
@@ -253,35 +259,43 @@ if($connect->query($sql)){
   }
 }
 
+if (isset($token_color)) {
+  echo $color_html;
+}
+
 function seleccionar_icono_coro($h){
+  global $color_html;
   if($h==1){
-    return 'icon-green">sentiment_very_satisfied';
+    return '<i style="color:'.$color_html.'" class="material-icons icon-green">sentiment_very_satisfied';
   }else{
-    return 'icon-red">sentiment_very_dissatisfied';
+    return '<i class="material-icons icon-red">sentiment_very_dissatisfied';
   }
 }
 
 function seleccionar_icono_llamamiento($h){
+  global $color_html;
   if($h>3 && $h<6){
-    return 'icon-grey">sentiment_satisfied';
+    return '<i class="material-icons icon-grey">sentiment_satisfied';
   }
   if ($h<4 && $h>0) {
-    return 'icon-grey">sentiment_neutral';
+    return '<i class="material-icons icon-grey">sentiment_neutral';
   }
   if ($h==0) {
-    return 'icon-red">sentiment_very_dissatisfied';
+    return '<i class="material-icons icon-red">sentiment_very_dissatisfied';
   }
   if ($h==6) {
-    return 'icon-green">sentiment_very_satisfied';
+    return '<i style="color:'.$color_html.'" class="material-icons ">sentiment_very_satisfied';
   }
 }
 
 function card($tipo,$titulo,$llamamiento,$indice_barrio,$nombre,$celular,$estado,$ultima_gestion,$fecha_gestion){
+global $color;
+global $color_html;
   if ($tipo=='1') {
     return '<div class="col s12 m6 l3">
     <div class="card ">
-    <div class="card-content green-text">
-    <span class="card-title">'.$titulo.' <i class="material-icons right icon-green">check</i></a></span>
+    <div class="card-content '.$color.'-text">
+    <span class="card-title">'.$titulo.' <i style="color:'.$color_html.'" class="material-icons right">check</i></a></span>
     <table class="highlight" >
     <tbody>
     <tr>
@@ -299,7 +313,7 @@ function card($tipo,$titulo,$llamamiento,$indice_barrio,$nombre,$celular,$estado
     </tbody>
     </table>
     </div>
-    <a onclick="abrir_modal1(1,\''.$titulo.'\',\''.$indice_barrio.'\',\''.$llamamiento.'\')" class=" btn-floating halfway-fab btn-small waves-effect waves-light green"><i class="material-icons">edit</i></a>
+    <a onclick="abrir_modal1(1,\''.$titulo.'\',\''.$indice_barrio.'\',\''.$llamamiento.'\')" class=" btn-floating halfway-fab btn-small waves-effect waves-light '.$color.'"><i class="material-icons">edit</i></a>
     <a style="margin-right:12%" class=" tooltipped btn-floating halfway-fab btn-small waves-effect waves-light grey " data-position="bottom" data-tooltip="Gestión:&nbsp;\''.$ultima_gestion.'\' <br>'.$fecha_gestion.'"><i class="material-icons">remove_red_eye</i></a>
     </div>
     </div>';
@@ -325,7 +339,7 @@ function card($tipo,$titulo,$llamamiento,$indice_barrio,$nombre,$celular,$estado
     </tbody>
     </table>
     </div>
-    <a onclick="abrir_modal1(1,\''.$titulo.'\',\''.$indice_barrio.'\',\''.$llamamiento.'\')" class="pulse btn-floating halfway-fab btn-small waves-effect waves-light green"><i class="material-icons">edit</i></a>
+    <a onclick="abrir_modal1(1,\''.$titulo.'\',\''.$indice_barrio.'\',\''.$llamamiento.'\')" class="pulse btn-floating halfway-fab btn-small waves-effect waves-light '.$color.'"><i class="material-icons">edit</i></a>
     <a style="margin-right:12%" class=" tooltipped btn-floating halfway-fab btn-small waves-effect waves-light grey " data-position="bottom" data-tooltip="Gestión: '.$ultima_gestion.' <br>'.$fecha_gestion.'"><i class="material-icons">remove_red_eye</i></a>
     </div>
     </div>';
@@ -333,6 +347,8 @@ function card($tipo,$titulo,$llamamiento,$indice_barrio,$nombre,$celular,$estado
 }
 
 function card_coro($nombre_barrio,$barrio,$tipo, $ultima_gestion,$fecha_gestion){
+  global $color;
+  global $color_html;
   if ($tipo=='1') {
     return '
     <div class="col s12 m6 l3">
@@ -344,7 +360,7 @@ function card_coro($nombre_barrio,$barrio,$tipo, $ultima_gestion,$fecha_gestion)
     <div class="col s12 m6 l3">
     <div class="card grey lighten-5">
     <div class="card-content grey-text">
-    <span class="card-title">CORO DE BARRIO <i class="material-icons right icon-green">check</i></a></span>
+    <span class="card-title">CORO DE BARRIO <i style="color:'.$color_html.'"class="material-icons right">check</i></a></span>
     <table class="highlight" >
     <tbody>
     <tr>
@@ -352,7 +368,7 @@ function card_coro($nombre_barrio,$barrio,$tipo, $ultima_gestion,$fecha_gestion)
     <td  >&nbsp;&nbsp; </td>
     </tr>
     <tr>
-    <td style="text-align:center;color:#e8b0b0" colspan="2" ><i class="material-icons  icon-green">sentiment_very_satisfied</i></td>
+    <td style="text-align:center;color:#e8b0b0" colspan="2" ><i style="color:'.$color_html.'" class="material-icons">sentiment_very_satisfied</i></td>
     </tr>
     <tr>
     <td  >&nbsp;&nbsp; </td>
@@ -361,7 +377,7 @@ function card_coro($nombre_barrio,$barrio,$tipo, $ultima_gestion,$fecha_gestion)
     </tbody>
     </table>
     </div>
-    <a  onclick="abrir_modal2(\''.$nombre_barrio.'\',\'Coro\',\''.$barrio.'\')" class=" btn-floating halfway-fab btn-small waves-effect waves-light green"><i class="material-icons">edit</i></a>
+    <a  onclick="abrir_modal2(\''.$nombre_barrio.'\',\'Coro\',\''.$barrio.'\')" class=" btn-floating halfway-fab btn-small waves-effect waves-light '.$color.'"><i class="material-icons">edit</i></a>
     <a style="margin-right:12%" class="  tooltipped btn-floating halfway-fab btn-small waves-effect waves-light grey " data-position="bottom" data-tooltip="Gestión:&nbsp;\''.$ultima_gestion.'\'<br>'.$fecha_gestion.'"><i class="material-icons">remove_red_eye</i></a>
     </div>
     </div>';
@@ -393,7 +409,7 @@ function card_coro($nombre_barrio,$barrio,$tipo, $ultima_gestion,$fecha_gestion)
     </tbody>
     </table>
     </div>
-    <a onclick="abrir_modal2(\''.$nombre_barrio.'\',\'Coro\',\''.$barrio.'\')" class="  btn-floating halfway-fab btn-small waves-effect waves-light green"><i class="material-icons">edit</i></a>
+    <a onclick="abrir_modal2(\''.$nombre_barrio.'\',\'Coro\',\''.$barrio.'\')" class="  btn-floating halfway-fab btn-small waves-effect waves-light '.$color.'"><i class="material-icons">edit</i></a>
     <a style="margin-right:12%" class="  tooltipped btn-floating halfway-fab btn-small waves-effect waves-light grey " data-position="bottom" data-tooltip="Gestión:&nbsp;\''.$ultima_gestion.'\'<br>'.$fecha_gestion.'"><i class="material-icons">remove_red_eye</i></a>
     </div>
     </div>
@@ -402,11 +418,13 @@ function card_coro($nombre_barrio,$barrio,$tipo, $ultima_gestion,$fecha_gestion)
 }
 
 function card_estaca($tipo,$titulo,$llamamiento,$nombre,$celular,$estado,$ultima_gestion,$fecha_gestion){
+global $color;
+global $color_html;
   if ($tipo=='1') {
     return ' <div class="col s12 m6 l3">
     <div class="card ">
-    <div class="card-content green-text">
-    <span class="card-title">'.$titulo.'<i class="material-icons right icon-green">check</i></a></span>
+    <div class="card-content '.$color.'-text">
+    <span class="card-title">'.$titulo.'<i style="color:'.$color_html.'" class="material-icons right">check</i></a></span>
     <table class="highlight" >
     <tbody>
     <tr>
@@ -424,7 +442,7 @@ function card_estaca($tipo,$titulo,$llamamiento,$nombre,$celular,$estado,$ultima
     </tbody>
     </table>
     </div>
-    <a onclick="abrir_modal1(0,\''.$titulo.'\',\'0\',\''.$llamamiento.'\')" class=" btn-floating halfway-fab btn-small waves-effect waves-light green"><i class="material-icons">edit</i></a>
+    <a onclick="abrir_modal1(0,\''.$titulo.'\',\'0\',\''.$llamamiento.'\')" class=" btn-floating halfway-fab btn-small waves-effect waves-light '.$color.'"><i class="material-icons">edit</i></a>
     <a style="margin-right:12%" class=" tooltipped btn-floating halfway-fab btn-small waves-effect waves-light grey " data-position="bottom" data-tooltip="Gestión:&nbsp;\''.$ultima_gestion.'\'<br>'.$fecha_gestion.'"><i class="material-icons">remove_red_eye</i></a>
     </div>
     </div>';
@@ -450,7 +468,7 @@ function card_estaca($tipo,$titulo,$llamamiento,$nombre,$celular,$estado,$ultima
     </tbody>
     </table>
     </div>
-    <a onclick="abrir_modal1(0,\''.$titulo.'\',\'0\',\''.$llamamiento.'\')" class="pulse btn-floating halfway-fab btn-small waves-effect waves-light green"><i class="material-icons">edit</i></a>
+    <a onclick="abrir_modal1(0,\''.$titulo.'\',\'0\',\''.$llamamiento.'\')" class="pulse btn-floating halfway-fab btn-small waves-effect waves-light '.$color.'"><i class="material-icons">edit</i></a>
     <a style="margin-right:12%" class=" tooltipped btn-floating halfway-fab btn-small waves-effect waves-light grey " data-position="bottom" data-tooltip="Gestión:&nbsp;\''.$ultima_gestion.'\'<br>'.$fecha_gestion.'"><i class="material-icons">remove_red_eye</i></a>
     </div>
     </div>';

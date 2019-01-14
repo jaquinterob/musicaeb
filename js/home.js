@@ -2,10 +2,30 @@
 * @Date:   2018-10-14T19:59:01-05:00
 * @Last modified time: 2018-10-15T19:09:39-05:00
 */
+var color_app='green';
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
+  obtener_color();
   inicializaciones();
 });
+
+function obtener_color(){
+  var datosformulario='token_color=1';
+  jq.ajax({
+    url:"includes/home_includes.php",
+    type:"POST",
+    data:datosformulario,
+    error:function(jqXHR,text_status,strError){
+      jq(".cargando").hide();
+      M.toast({html:'el error es: '+strError, classes:'red'});
+    },
+    timeout:10000,
+    success:function(data){
+      data=data.trim();
+     color_app=data;
+    }
+  });
+}
 
 function log_ingreso(){
   var datosformulario="ingreso=1&gestor="+jq("#gestor").val();
@@ -67,7 +87,7 @@ function chart_general(){
         var options = {
           title: ' Consolidado Llammamientos Estaca Belén',
           pieHole: 0.0,
-          slices: [{color: '#4CAF50'},{color: '#beccbf'}]
+          slices: [{color:color_app},{color: '#beccbf'}]
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
@@ -101,7 +121,7 @@ function chart_general1(){
         var options = {
           title: 'Consolidado coros de Barrio Estaca Belén',
           pieHole: 0.0,
-          slices: [{color: '#4CAF50'},{color: '#beccbf'}]
+          slices: [{color: color_app},{color: '#beccbf'}]
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchart1'));
         chart.draw(data, options);
@@ -181,7 +201,7 @@ function menu(item) {
             var options = {
               title: 'Adherencia Llamamientos',
               pieHole: 0.0,
-              slices: [{color: '#4CAF50'},{color: '#beccbf'}]
+              slices: [{color: color_app},{color: '#beccbf'}]
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchart3'));
             chart.draw(data, options);
@@ -199,7 +219,7 @@ function menu(item) {
             var options = {
               title: 'Adherencia Llamamientos',
               pieHole: 0.0,
-              slices: [{color: '#4CAF50'},{color: '#beccbf'}]
+              slices: [{color: color_app},{color: '#beccbf'}]
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchart2'));
             chart.draw(data, options);
@@ -403,7 +423,7 @@ function actualizar_coro(indice_barrio){
         data=data.trim();
         res=data.split('|');
         if (res[0]==1) {
-          M.toast({html:res[1], classes:'green'});
+          M.toast({html:res[1], classes:color_app});
           menu(indice_barrio);
           var instance = M.Modal.getInstance(jq("#modal2"));
           instance.close();
@@ -441,7 +461,7 @@ function actualizar_llamamiento(tipo,llamamiento,indice_barrio) {
           data=data.trim();
           res=data.split('|');
           if (res[0]=='1') {
-            M.toast({html:res[1],classes:'green'});
+            M.toast({html:res[1],classes:color_app});
             menu(indice_barrio);
             var instance = M.Modal.getInstance(jq("#modal1"));
             instance.close();
@@ -467,7 +487,7 @@ function actualizar_llamamiento(tipo,llamamiento,indice_barrio) {
             data=data.trim();
             res=data.split('|');
             if (res[0]=='1') {
-              M.toast({html:res[1],classes:'green'});
+              M.toast({html:res[1],classes:color_app});
               menu(-1);
               var instance = M.Modal.getInstance(jq("#modal1"));
               instance.close();
@@ -553,7 +573,7 @@ function quitar_llamamiento(tipo,llamamiento,barrio){
         data=data.trim();
         res=data.split('|');
         if (res[0]=='1') {
-          M.toast({html:res[1],classes:'green'});
+          M.toast({html:res[1],classes:color_app});
           menu(indice_barrio);
           var instance = M.Modal.getInstance(jq("#modal1"));
           instance.close();
@@ -577,7 +597,7 @@ function quitar_llamamiento(tipo,llamamiento,barrio){
         data=data.trim();
         res=data.split('|');
         if (res[0]=='1') {
-          M.toast({html:res[1],classes:'green'});
+          M.toast({html:res[1],classes:color_app});
           menu(-1);
           var instance = M.Modal.getInstance(jq("#modal1"));
           instance.close();
