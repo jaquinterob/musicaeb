@@ -18,14 +18,15 @@ if(isset($chart_llamamientos)){
   if (mysqli_num_rows($res)>0) {
     while($row = mysqli_fetch_assoc($res)) $array[] = $row;
 
-    $ast=$array[0]['miembro_obispado']+$array[0]['presidente']+$array[0]['director']+$array[0]['pianista']+$array[0]['director_coro']+$array[0]['pianista_coro'];
+    $ast1=$array[0]['miembro_obispado']+$array[0]['presidente']+$array[0]['director']+$array[0]['pianista']+$array[0]['director_coro']+$array[0]['pianista_coro'];
     $bel=$array[1]['miembro_obispado']+$array[1]['presidente']+$array[1]['director']+$array[1]['pianista']+$array[1]['director_coro']+$array[1]['pianista_coro'];
     $bue=$array[2]['miembro_obispado']+$array[2]['presidente']+$array[2]['director']+$array[2]['pianista']+$array[2]['director_coro']+$array[2]['pianista_coro'];
     $env=$array[3]['miembro_obispado']+$array[3]['presidente']+$array[3]['director']+$array[3]['pianista']+$array[3]['director_coro']+$array[3]['pianista_coro'];
     $flo=$array[4]['miembro_obispado']+$array[4]['presidente']+$array[4]['director']+$array[4]['pianista']+$array[4]['director_coro']+$array[4]['pianista_coro'];
     $gua=$array[5]['miembro_obispado']+$array[5]['presidente']+$array[5]['director']+$array[5]['pianista']+$array[5]['director_coro']+$array[5]['pianista_coro'];
     $rob=$array[6]['miembro_obispado']+$array[6]['presidente']+$array[6]['director']+$array[6]['pianista']+$array[6]['director_coro']+$array[6]['pianista_coro'];
-    echo $ast+$bel+$bue+$env+$flo+$gua+$rob;
+    $ast2=$array[7]['miembro_obispado']+$array[7]['presidente']+$array[7]['director']+$array[7]['pianista']+$array[7]['director_coro']+$array[7]['pianista_coro'];
+    echo $ast1+$ast2+$bel+$bue+$env+$flo+$gua+$rob;
   }
 }
 
@@ -34,17 +35,23 @@ if (isset($llamamientos)) {
   $res=$connect->query($sql);
   if (mysqli_num_rows($res)>0) {
     while($row = mysqli_fetch_assoc($res)) $array[] = $row;
-    $ast=$array[0]['miembro_obispado']+$array[0]['presidente']+$array[0]['director']+$array[0]['pianista']+$array[0]['director_coro']+$array[0]['pianista_coro'];
+    $ast1=$array[0]['miembro_obispado']+$array[0]['presidente']+$array[0]['director']+$array[0]['pianista']+$array[0]['director_coro']+$array[0]['pianista_coro'];
     $bel=$array[1]['miembro_obispado']+$array[1]['presidente']+$array[1]['director']+$array[1]['pianista']+$array[1]['director_coro']+$array[1]['pianista_coro'];
     $bue=$array[2]['miembro_obispado']+$array[2]['presidente']+$array[2]['director']+$array[2]['pianista']+$array[2]['director_coro']+$array[2]['pianista_coro'];
     $env=$array[3]['miembro_obispado']+$array[3]['presidente']+$array[3]['director']+$array[3]['pianista']+$array[3]['director_coro']+$array[3]['pianista_coro'];
     $flo=$array[4]['miembro_obispado']+$array[4]['presidente']+$array[4]['director']+$array[4]['pianista']+$array[4]['director_coro']+$array[4]['pianista_coro'];
     $gua=$array[5]['miembro_obispado']+$array[5]['presidente']+$array[5]['director']+$array[5]['pianista']+$array[5]['director_coro']+$array[5]['pianista_coro'];
     $rob=$array[6]['miembro_obispado']+$array[6]['presidente']+$array[6]['director']+$array[6]['pianista']+$array[6]['director_coro']+$array[6]['pianista_coro'];
+    $ast2=$array[7]['miembro_obispado']+$array[7]['presidente']+$array[7]['director']+$array[7]['pianista']+$array[7]['director_coro']+$array[7]['pianista_coro'];
     echo '<tbody>
     <tr>
-    <td>Asturias</td>
-    <td>'.$ast.'/6</td>
+    <td>Asturias I</td>
+    <td>'.$ast1.'/6</td>
+    <td>'.seleccionar_icono_llamamiento($ast).'</i></td>
+    </tr>
+    <tr>
+    <td>Asturias II</td>
+    <td>'.$ast2.'/6</td>
     <td>'.seleccionar_icono_llamamiento($ast).'</i></td>
     </tr>
     <tr>
@@ -86,8 +93,12 @@ if (isset($coros)) {
 
     echo '          <tbody >
     <tr>
-    <td>Asturias</td>
+    <td>Asturias I</td>
     <td>'.seleccionar_icono_coro($yo[0]['coro_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Asturias II</td>
+    <td>'.seleccionar_icono_coro($yo[7]['coro_activo']).'</i></td>
     </tr>
     <tr>
     <td>Belén</td>
@@ -491,7 +502,7 @@ function guardar_log($item,$culpable,$nota_gestion,$categoria){
 function nombrar_barrio($n){
   switch ($n) {
     case '1':
-    return "Asturias";
+    return "Asturias I";
     break;
     case '2':
     return "Belén";
@@ -510,6 +521,8 @@ function nombrar_barrio($n){
     break;
     case '7':
     return "Robledo";
+    case '8':
+    return "Asturias II";
     break;
   }
 }

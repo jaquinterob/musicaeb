@@ -22,7 +22,8 @@ $completo= "http://" . $host . $url;
     <ul class="right hide-on-med-and-down">
       <li><a href=<?php $completo  ?>>Inicio</a></li>
       <li><a onclick="menu(-1)">Estaca</a></li>
-      <li><a onclick="menu(1)">Asturias</a></li>
+      <li><a onclick="menu(1)">Asturias I</a></li>
+      <li><a onclick="menu(8)">Asturias II</a></li>
       <li><a onclick="menu(2)">Belen</a></li>
       <li><a onclick="menu(3)">Buenos Aires</a></li>
       <li><a onclick="menu(4)">Envigado</a></li>
@@ -47,7 +48,8 @@ $completo= "http://" . $host . $url;
     </div></li>
   <li><a href=<?php $completo  ?>><i class="material-icons">home</i>Inicio</a></li>
   <li><a onclick="menu(-1)"  ><i class="material-icons">account_balance</i>Estaca</a></li>
-  <li><a onclick="menu(1)" ><i class="material-icons">near_me</i>Asturias</a></li>
+  <li><a onclick="menu(1)" ><i class="material-icons">near_me</i>Asturias I</a></li>
+  <li><a onclick="menu(8)" ><i class="material-icons">near_me</i>Asturias II</a></li>
   <li><a onclick="menu(2)" ><i class="material-icons">near_me</i>Belen</a></li>
   <li><a onclick="menu(3)" ><i class="material-icons">near_me</i>Buenos Aires</a></li>
   <li><a onclick="menu(4)" ><i class="material-icons">near_me</i>Envigado</a></li>
