@@ -20,6 +20,26 @@ include('menu.php');
                 <hr>
                 <div style="margin:20px" id="donutchart1" style="width: auto; height: auto;"></div>
             </div>
+            <div class="card">
+                <div class="card-content black-text">
+                    <span class="card-title">Curso de Dirección Musical</span>
+                    <table id="contenedor_tabla_curso_direccion" class="highlight">
+                        <!-- desde php -->
+                    </table>
+                </div>
+                <hr>
+                <div style="margin:20px" id="donutchart_curso_direccion" style="width: auto; height: auto;"></div>
+            </div>
+            <div class="card">
+                <div class="card-content black-text">
+                    <span class="card-title">Curso de Acompañamiento Musical</span>
+                    <table id="contenedor_tabla_curso_acom" class="highlight">
+                        <!-- desde php -->
+                    </table>
+                </div>
+                <hr>
+                <div style="margin:20px" id="donutchart_curso_acom" style="width: auto; height: auto;"></div>
+            </div>
         </div>
         <div class="col s12 m6">
             <div class="card">

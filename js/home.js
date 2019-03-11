@@ -9,6 +9,29 @@ jq(document).ready(function() {
   inicializaciones();
 });
 
+function inicializaciones(){
+  log_ingreso();
+  validar_usuario();
+  jq(".card").addClass('hoverable');
+  jq("#contenedor_individual").hide();
+  jq("#contenedor_individuales_titulo").hide();
+  M.AutoInit();
+  chart_general();
+  chart_general1();
+  carga_inicial_coro();
+  carga_inicial_llamamientos();
+  carga_inicial_curso_acompañamiento();
+  carga_inicial_curso_direccion();
+  chart_general_curso_direccion();
+  chart_general_curso_acom();
+  setTimeout(function () {
+    jq(".icon-red").fadeOut('fast').fadeIn('fast').fadeOut('fast').fadeIn('fast').fadeOut('slow').fadeIn('slow').fadeOut('slow').fadeIn('slow');
+  },1000);
+  // ocultar_todo();
+  jq(".cargando").hide();
+  bienvenida();
+}
+
 function obtener_color(){
   var datosformulario='token_color=1';
   jq.ajax({
@@ -42,25 +65,6 @@ function log_ingreso(){
     console.log(data.trim());
     }
   });
-}
-
-function inicializaciones(){
-  log_ingreso();
-  validar_usuario();
-  jq(".card").addClass('hoverable');
-  jq("#contenedor_individual").hide();
-  jq("#contenedor_individuales_titulo").hide();
-  M.AutoInit();
-  chart_general();
-  chart_general1();
-  carga_inicial_coro();
-  carga_inicial_llamamientos();
-  setTimeout(function () {
-    jq(".icon-red").fadeOut('fast').fadeIn('fast').fadeOut('fast').fadeIn('fast').fadeOut('slow').fadeIn('slow').fadeOut('slow').fadeIn('slow');
-  },1000);
-  // ocultar_todo();
-  jq(".cargando").hide();
-  bienvenida();
 }
 
 function chart_general(){
@@ -131,6 +135,74 @@ function chart_general1(){
   });
 }
 
+function chart_general_curso_direccion(){
+  jq(".cargando").show();
+  var datosformulario="chart_general_curso_direccion=1";
+  jq.ajax({
+    url:"includes/home_includes.php",
+    type:"POST",
+    data:datosformulario,
+    error:function(jqXHR,text_status,strError){
+      jq(".cargando").hide();
+      M.toast({html:'el error es: '+strError, classes:'red'});
+    },
+    timeout:10000,
+    success:function(datad){
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['5', 'H'],
+          ['Ok',     parseInt(datad)],
+          ['Falta',     7-parseInt(datad)]
+        ]);
+        var options = {
+          title: 'Consolidado cursos de Dirección Musical',
+          pieHole: 0.0,
+          slices: [{color: color_app},{color: '#beccbf'}]
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart_curso_direccion'));
+        chart.draw(data, options);
+      }
+      jq(".cargando").hide();
+    }
+  });
+}
+
+function chart_general_curso_acom(){
+  jq(".cargando").show();
+  var datosformulario="chart_general_curso_acom=1";
+  jq.ajax({
+    url:"includes/home_includes.php",
+    type:"POST",
+    data:datosformulario,
+    error:function(jqXHR,text_status,strError){
+      jq(".cargando").hide();
+      M.toast({html:'el error es: '+strError, classes:'red'});
+    },
+    timeout:10000,
+    success:function(datad){
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['5', 'H'],
+          ['Ok',     parseInt(datad)],
+          ['Falta',     7-parseInt(datad)]
+        ]);
+        var options = {
+          title: 'Consolidado cursos de Acompañamiento Musical',
+          pieHole: 0.0,
+          slices: [{color: color_app},{color: '#beccbf'}]
+        };
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart_curso_acom'));
+        chart.draw(data, options);
+      }
+      jq(".cargando").hide();
+    }
+  });
+}
+
 function carga_inicial_coro(){
   jq(".cargando").show();
   var datosformulario="coros=1";
@@ -145,6 +217,42 @@ function carga_inicial_coro(){
     timeout:10000,
     success:function(data){
       jq("#contenedor_tabla_coros").html(data);
+      jq(".cargando").hide();
+    }
+  });
+}
+function carga_inicial_curso_direccion(){
+  jq(".cargando").show();
+  var datosformulario="carga_inicial_curso_direccion=1";
+  jq.ajax({
+    url:"includes/home_includes.php",
+    type:"POST",
+    data:datosformulario,
+    error:function(jqXHR,text_status,strError){
+      jq(".cargando").hide();
+      M.toast({html:'el error es: '+strError, classes:'red'});
+    },
+    timeout:10000,
+    success:function(data){
+      jq("#contenedor_tabla_curso_direccion").html(data);
+      jq(".cargando").hide();
+    }
+  });
+}
+function carga_inicial_curso_acompañamiento(){
+  jq(".cargando").show();
+  var datosformulario="carga_inicial_curso_acompañamiento=1";
+  jq.ajax({
+    url:"includes/home_includes.php",
+    type:"POST",
+    data:datosformulario,
+    error:function(jqXHR,text_status,strError){
+      jq(".cargando").hide();
+      M.toast({html:'el error es: '+strError, classes:'red'});
+    },
+    timeout:10000,
+    success:function(data){
+      jq("#contenedor_tabla_curso_acom").html(data);
       jq(".cargando").hide();
     }
   });
@@ -240,7 +348,7 @@ function menu(item) {
     break;
     case 1:
     setTimeout(function () {
-      jq("#contenedor_titulo").html('Barrio - <em>Asturias</em>');
+      jq("#contenedor_titulo").html('Barrio - <em>Asturias I</em>');
     },1000);
     break;
     case 2:
@@ -271,6 +379,11 @@ function menu(item) {
     case 7:
     setTimeout(function () {
       jq("#contenedor_titulo").html('Barrio - <em>Robledo</em>');
+    },1000);
+    break;
+    case 8:
+    setTimeout(function () {
+      jq("#contenedor_titulo").html('Barrio - <em>Asturias II</em>');
     },1000);
     break;
   }
@@ -353,7 +466,22 @@ function abrir_modal1(tipo,titulo,barrio,llamamiento) {
 
 function abrir_modal2(nombre,titulo,barrio) {
   jq(".cargando").show();
-  var datosformulario="consultar_coro_barrio="+barrio;
+var datosformulario='';
+console.log(titulo);
+switch (titulo) {
+  case 'Coro':
+  datosformulario="consultar_coro_barrio="+barrio;
+  break;
+  case 'Curso Dirección':
+  datosformulario="consultar_curso_direccion="+barrio;
+  break;
+  case 'Curso Acompañamiento':
+  datosformulario="consultar_curso_acomp="+barrio;
+  break;
+}
+
+
+
   jq.ajax({
     url:"includes/home_includes.php",
     type:"POST",
@@ -387,11 +515,14 @@ function abrir_modal2(nombre,titulo,barrio) {
 
   var instance = M.Modal.getInstance(jq("#modal2"));
   instance.open();
-  jq("#contenedor_titulo_modal2").text('Coro '+nombre);
-  jq("#contenedor_boton_modal2").html('<a  class="modal-close waves-effect waves-green btn-flat">Cancelar</a>  <a onclick="actualizar_coro('+barrio+')" class=" waves-effect waves-green btn-flat">Actualizar</a>');
+  jq("#contenedor_titulo_modal2").text(titulo+' '+nombre);
+  jq("#contenedor_boton_modal2").html('<a  class="modal-close waves-effect waves-green btn-flat">Cancelar</a>  <a onclick="actualizar_coro('+barrio+',\''+titulo+'\');" class=" waves-effect waves-green btn-flat">Actualizar</a>');
 }
 
-function actualizar_coro(indice_barrio){
+function actualizar_coro(indice_barrio,token){
+
+
+  var datosformulario='';
   var v=0;
   if (jq("#nota_gestion2").val()=='') {
     jq("#nota_gestion2").addClass('invalid');
@@ -409,7 +540,18 @@ function actualizar_coro(indice_barrio){
     }else{
       nuevo='0';
     }
-    var datosformulario="barrio_coro="+indice_barrio+"&nota_gestion="+jq("#nota_gestion2").val()+"&nuevo_valor="+nuevo+"&culpable="+jq("#gestor").val();
+    console.log('El token es:'+token);
+    switch (token) {
+      case 'Coro':
+      datosformulario="barrio_coro="+indice_barrio+"&nota_gestion="+jq("#nota_gestion2").val()+"&nuevo_valor="+nuevo+"&culpable="+jq("#gestor").val();
+      break;
+      case 'Curso Dirección':
+      datosformulario="barrio_curso_direccion="+indice_barrio+"&nota_gestion="+jq("#nota_gestion2").val()+"&nuevo_valor="+nuevo+"&culpable="+jq("#gestor").val();
+      break;
+      case 'Curso Acompañamiento':
+      datosformulario="barrio_curso_acom="+indice_barrio+"&nota_gestion="+jq("#nota_gestion2").val()+"&nuevo_valor="+nuevo+"&culpable="+jq("#gestor").val();
+      break;
+    }
     jq.ajax({
       url:"includes/home_includes.php",
       type:"POST",
@@ -427,7 +569,6 @@ function actualizar_coro(indice_barrio){
           menu(indice_barrio);
           var instance = M.Modal.getInstance(jq("#modal2"));
           instance.close();
-
         }else{
           M.toast({html:res[1],classse:'red'});
         }
@@ -615,7 +756,6 @@ function ingresos(){
         location.href ="ingresos.php";
     }
 }
-
 
 function enviar_agestion(){
    window.location='gestiones.php?gestor='+jq("#gestor").val();

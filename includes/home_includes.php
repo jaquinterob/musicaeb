@@ -127,6 +127,96 @@ if (isset($coros)) {
     </tbody>';
   }
 }
+if (isset($carga_inicial_curso_direccion)) {
+  $yo=null;
+  $sql="SELECT * FROM `barrios_llamamientos`";
+  $res=$connect->query($sql);
+  if (mysqli_num_rows($res)>0) {
+
+    while($row = mysqli_fetch_assoc($res)) $array[] = $row;
+    $yo=$array;
+
+    echo '          <tbody >
+    <tr>
+    <td>Asturias I</td>
+    <td>'.seleccionar_icono_coro($yo[0]['curso_direccion_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Asturias II</td>
+    <td>'.seleccionar_icono_coro($yo[7]['curso_direccion_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Belén</td>
+    <td>'.seleccionar_icono_coro($yo[1]['curso_direccion_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Buenos Aires</td>
+    <td>'.seleccionar_icono_coro($yo[2]['curso_direccion_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Envigado</td>
+    <td>'.seleccionar_icono_coro($yo[3]['curso_direccion_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Floresta</td>
+    <td>'.seleccionar_icono_coro($yo[4]['curso_direccion_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Guayabal</td>
+    <td>'.seleccionar_icono_coro($yo[5]['curso_direccion_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Robledo</td>
+    <td>'.seleccionar_icono_coro($yo[6]['curso_direccion_activo']).'</i></td>
+    </tr>
+    </tbody>';
+  }
+}
+if (isset($carga_inicial_curso_acompañamiento)) {
+  $yo=null;
+  $sql="SELECT * FROM `barrios_llamamientos`";
+  $res=$connect->query($sql);
+  if (mysqli_num_rows($res)>0) {
+
+    while($row = mysqli_fetch_assoc($res)) $array[] = $row;
+    $yo=$array;
+
+    echo '          <tbody >
+    <tr>
+    <td>Asturias I</td>
+    <td>'.seleccionar_icono_coro($yo[0]['curso_acom_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Asturias II</td>
+    <td>'.seleccionar_icono_coro($yo[7]['curso_acom_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Belén</td>
+    <td>'.seleccionar_icono_coro($yo[1]['curso_acom_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Buenos Aires</td>
+    <td>'.seleccionar_icono_coro($yo[2]['curso_acom_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Envigado</td>
+    <td>'.seleccionar_icono_coro($yo[3]['curso_acom_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Floresta</td>
+    <td>'.seleccionar_icono_coro($yo[4]['curso_acom_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Guayabal</td>
+    <td>'.seleccionar_icono_coro($yo[5]['curso_acom_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Robledo</td>
+    <td>'.seleccionar_icono_coro($yo[6]['curso_acom_activo']).'</i></td>
+    </tr>
+    </tbody>';
+  }
+}
 
 if (isset($chart1)) {
   $v=0;
@@ -136,6 +226,36 @@ if (isset($chart1)) {
   if (mysqli_num_rows($res)>0) {
     while ($registro=mysqli_fetch_assoc($res)) {
       if ($registro['coro_activo']==1) {
+        $v++;
+      }
+      $c++;
+    }
+    echo $v;
+  }
+}
+if (isset($chart_general_curso_direccion)) {
+  $v=0;
+  $c=0;
+  $sql="SELECT * FROM `barrios_llamamientos`";
+  $res=$connect->query($sql);
+  if (mysqli_num_rows($res)>0) {
+    while ($registro=mysqli_fetch_assoc($res)) {
+      if ($registro['curso_direccion_activo']==1) {
+        $v++;
+      }
+      $c++;
+    }
+    echo $v;
+  }
+}
+if (isset($chart_general_curso_acom)) {
+  $v=0;
+  $c=0;
+  $sql="SELECT * FROM `barrios_llamamientos`";
+  $res=$connect->query($sql);
+  if (mysqli_num_rows($res)>0) {
+    while ($registro=mysqli_fetch_assoc($res)) {
+      if ($registro['curso_acom_activo']==1) {
         $v++;
       }
       $c++;
@@ -176,7 +296,9 @@ if (isset($menu)) {
       card($array[$menu]['pianista'],'Pianista','pianista',$menu,$array[$menu]['nombre_pianista'],$array[$menu]['cel_pianista'],$array[$menu]['estado_pianista'],$array[$menu]['gestion_pianista'],$array[$menu]['fecha_gestion_pianista']).
       card($array[$menu]['director_coro'],'Director del Coro','director_coro',$menu,$array[$menu]['nombre_director_coro'],$array[$menu]['cel_director_coro'],$array[$menu]['estado_director_coro'],$array[$menu]['gestion_director_coro'],$array[$menu]['fecha_gestion_director_coro']).
       card($array[$menu]['pianista_coro'],'Pianista del coro','pianista_coro',$menu,$array[$menu]['nombre_pianista_coro'],$array[$menu]['cel_pianista_coro'],$array[$menu]['estado_pianista_coro'],$array[$menu]['gestion_pianista_coro'],$array[$menu]['fecha_gestion_pianista_coro']).
-      card_coro($array[$menu]['barrio'],$menu,$array[$menu]['coro_activo'],$array[$menu]['gestion_coro'],$array[$menu]['fecha_gestion_coro']).'|'.$con.'|2';
+      card_coro($array[$menu]['barrio'],$menu,$array[$menu]['coro_activo'],$array[$menu]['gestion_coro'],$array[$menu]['fecha_gestion_coro']).
+      card_curso_direccion($array[$menu]['barrio'],$menu,$array[$menu]['curso_direccion_activo'],$array[$menu]['gestion_curso_direccion'],$array[$menu]['fecha_gestion_curso_direccion']).
+      card_curso_acomp($array[$menu]['barrio'],$menu,$array[$menu]['curso_acom_activo'],$array[$menu]['gestion_curso_acom'],$array[$menu]['fecha_gestion_curso_acom']).'|'.$con.'|2';
     }
   }
 }
@@ -189,6 +311,32 @@ if (isset($barrio_coro)) {
       echo '1|Se actualiza el coro satisfactoriamente';
     } else{
       echo '1|Se actualiza el coro satisfactoriamente, pero no se registra en el log =(';
+    }
+  }else{
+    echo '0|No se pudo actualizar';
+  }
+}
+if (isset($barrio_curso_direccion)) {
+  $v='curso_direccion_';
+  $sql="UPDATE barrios_llamamientos SET   ".$v."activo='" . $nuevo_valor . "',gestion_curso_direccion='" . $nota_gestion. "',	fecha_gestion_curso_direccion=DATE_SUB(now(), INTERVAL 5 HOUR) WHERE id='" .$barrio_curso_direccion. "'";
+  if ($connect->query($sql)) {
+    if (guardar_log('Curso de Dirección',$culpable,$nota_gestion,nombrar_barrio($barrio_curso_direccion))) {
+      echo '1|Se actualiza item satisfactoriamente';
+    } else{
+      echo '1|Se actualiza item satisfactoriamente, pero no se registra en el log =(';
+    }
+  }else{
+    echo '0|No se pudo actualizar';
+  }
+}
+if (isset($barrio_curso_acom)) {
+  $v='curso_acom_';
+  $sql="UPDATE barrios_llamamientos SET   ".$v."activo='" . $nuevo_valor . "',gestion_curso_acom='" . $nota_gestion. "',fecha_gestion_curso_acom=DATE_SUB(now(), INTERVAL 5 HOUR) WHERE id='" .$barrio_curso_acom. "'";
+  if ($connect->query($sql)) {
+    if (guardar_log('Curso de Acompañamiento',$culpable,$nota_gestion,nombrar_barrio($barrio_curso_acom))) {
+      echo '1|Se actualiza item satisfactoriamente';
+    } else{
+      echo '1|Se actualiza item satisfactoriamente, pero no se registra en el log =(';
     }
   }else{
     echo '0|No se pudo actualizar';
@@ -219,6 +367,22 @@ if(isset($consultar_coro_barrio)){
   if (mysqli_num_rows($res)>0) {
     while($row = mysqli_fetch_assoc($res)) $array[] = $row;
     echo $array[$consultar_coro_barrio]['coro_activo'].'|'.$array[$consultar_coro_barrio]['gestion_coro'];
+  }
+}
+if(isset($consultar_curso_direccion)){
+  $sql="SELECT * FROM `barrios_llamamientos`";
+  $res=$connect->query($sql);
+  if (mysqli_num_rows($res)>0) {
+    while($row = mysqli_fetch_assoc($res)) $array[] = $row;
+    echo $array[$consultar_curso_direccion]['curso_direccion_activo'].'|'.$array[$consultar_curso_direccion]['gestion_curso_direccion'];
+  }
+}
+if(isset($consultar_curso_acomp)){
+  $sql="SELECT * FROM `barrios_llamamientos`";
+  $res=$connect->query($sql);
+  if (mysqli_num_rows($res)>0) {
+    while($row = mysqli_fetch_assoc($res)) $array[] = $row;
+    echo $array[$consultar_curso_acomp]['curso_acom_activo'].'|'.$array[$consultar_curso_acomp]['gestion_curso_acom'];
   }
 }
 
@@ -263,6 +427,7 @@ if (isset($usuario)) {
 if (isset($ingreso)) {
   $sql="INSERT INTO logs_ingresos (usuario,fecha)
   VALUES ('".$gestor."',DATE_SUB(now(), INTERVAL 5 HOUR));";
+
 if($connect->query($sql)){
     echo 'Se guarda correctamente en logs_ingresos';
   } else {
@@ -421,6 +586,146 @@ function card_coro($nombre_barrio,$barrio,$tipo, $ultima_gestion,$fecha_gestion)
     </table>
     </div>
     <a onclick="abrir_modal2(\''.$nombre_barrio.'\',\'Coro\',\''.$barrio.'\')" class="  btn-floating halfway-fab btn-small waves-effect waves-light '.$color.'"><i class="material-icons">edit</i></a>
+    <a style="margin-right:12%" class="  tooltipped btn-floating halfway-fab btn-small waves-effect waves-light grey " data-position="bottom" data-tooltip="Gestión:&nbsp;\''.$ultima_gestion.'\'<br>'.$fecha_gestion.'"><i class="material-icons">remove_red_eye</i></a>
+    </div>
+    </div>
+    ';
+  }
+}
+function card_curso_direccion($nombre_barrio,$barrio,$tipo, $ultima_gestion,$fecha_gestion){
+  global $color;
+  global $color_html;
+  if ($tipo=='1') {
+    return '
+    <div class="col s12 m6 l3">
+    <div class="card ">
+    <div style="margin:20px" id="donutchart2" style="width: 10px; height: 19px;"></div>
+    </div>
+    </div>
+    </div>
+    <div class="col s12 m6 l3">
+    <div class="card grey lighten-5">
+    <div class="card-content grey-text">
+    <span class="card-title">Curso de Direccion Musical <i style="color:'.$color_html.'"class="material-icons right">check</i></a></span>
+    <table class="highlight" >
+    <tbody>
+    <tr>
+    <td  >&nbsp;&nbsp; </td>
+    <td  >&nbsp;&nbsp; </td>
+    </tr>
+    <tr>
+    <td style="text-align:center;color:#e8b0b0" colspan="2" ><i style="color:'.$color_html.'" class="material-icons">sentiment_very_satisfied</i></td>
+    </tr>
+    <tr>
+    <td  >&nbsp;&nbsp; </td>
+    <td  >&nbsp;&nbsp;</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <a  onclick="abrir_modal2(\''.$nombre_barrio.'\',\'Curso Dirección\',\''.$barrio.'\')" class=" btn-floating halfway-fab btn-small waves-effect waves-light '.$color.'"><i class="material-icons">edit</i></a>
+    <a style="margin-right:12%" class="  tooltipped btn-floating halfway-fab btn-small waves-effect waves-light grey " data-position="bottom" data-tooltip="Gestión:&nbsp;\''.$ultima_gestion.'\'<br>'.$fecha_gestion.'"><i class="material-icons">remove_red_eye</i></a>
+    </div>
+    </div>';
+  }else{
+    return '
+    <div class="col s12 m6 l3">
+    <div class="card ">
+    <div style="margin:20px" id="donutchart2" style="width: 10px; height: 19px;"></div>
+    </div>
+    </div>
+    </div>
+    <div class="col s12 m6 l3">
+    <div class="card grey lighten-5">
+    <div class="card-content grey-text">
+    <span class="card-title">Curso de Dirección Musical <i class="material-icons right icon-red">warning</i></a></span>
+    <table class="highlight" >
+    <tbody>
+    <tr>
+    <td  >&nbsp;&nbsp; </td>
+    <td  >&nbsp;&nbsp; </td>
+    </tr>
+    <tr>
+    <td style="text-align:center;color:#e8b0b0" colspan="2" ><i class="material-icons  icon-red">sentiment_very_dissatisfied</i></td>
+    </tr>
+    <tr>
+    <td  >&nbsp;&nbsp; </td>
+    <td  >&nbsp;&nbsp;</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <a onclick="abrir_modal2(\''.$nombre_barrio.'\',\'Curso Dirección\',\''.$barrio.'\')" class="  btn-floating halfway-fab btn-small waves-effect waves-light '.$color.'"><i class="material-icons">edit</i></a>
+    <a style="margin-right:12%" class="  tooltipped btn-floating halfway-fab btn-small waves-effect waves-light grey " data-position="bottom" data-tooltip="Gestión:&nbsp;\''.$ultima_gestion.'\'<br>'.$fecha_gestion.'"><i class="material-icons">remove_red_eye</i></a>
+    </div>
+    </div>
+    ';
+  }
+}
+function card_curso_acomp($nombre_barrio,$barrio,$tipo, $ultima_gestion,$fecha_gestion){
+  global $color;
+  global $color_html;
+  if ($tipo=='1') {
+    return '
+    <div class="col s12 m6 l3">
+    <div class="card ">
+    <div style="margin:20px" id="donutchart2" style="width: 10px; height: 19px;"></div>
+    </div>
+    </div>
+    </div>
+    <div class="col s12 m6 l3">
+    <div class="card grey lighten-5">
+    <div class="card-content grey-text">
+    <span class="card-title">Curso de Direccion Musical <i style="color:'.$color_html.'"class="material-icons right">check</i></a></span>
+    <table class="highlight" >
+    <tbody>
+    <tr>
+    <td  >&nbsp;&nbsp; </td>
+    <td  >&nbsp;&nbsp; </td>
+    </tr>
+    <tr>
+    <td style="text-align:center;color:#e8b0b0" colspan="2" ><i style="color:'.$color_html.'" class="material-icons">sentiment_very_satisfied</i></td>
+    </tr>
+    <tr>
+    <td  >&nbsp;&nbsp; </td>
+    <td  >&nbsp;&nbsp;</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <a  onclick="abrir_modal2(\''.$nombre_barrio.'\',\'Curso Acompañamiento\',\''.$barrio.'\')" class=" btn-floating halfway-fab btn-small waves-effect waves-light '.$color.'"><i class="material-icons">edit</i></a>
+    <a style="margin-right:12%" class="  tooltipped btn-floating halfway-fab btn-small waves-effect waves-light grey " data-position="bottom" data-tooltip="Gestión:&nbsp;\''.$ultima_gestion.'\'<br>'.$fecha_gestion.'"><i class="material-icons">remove_red_eye</i></a>
+    </div>
+    </div>';
+  }else{
+    return '
+    <div class="col s12 m6 l3">
+    <div class="card ">
+    <div style="margin:20px" id="donutchart2" style="width: 10px; height: 19px;"></div>
+    </div>
+    </div>
+    </div>
+    <div class="col s12 m6 l3">
+    <div class="card grey lighten-5">
+    <div class="card-content grey-text">
+    <span class="card-title">Curso Acompmáñamiento Musical <i class="material-icons right icon-red">warning</i></a></span>
+    <table class="highlight" >
+    <tbody>
+    <tr>
+    <td  >&nbsp;&nbsp; </td>
+    <td  >&nbsp;&nbsp; </td>
+    </tr>
+    <tr>
+    <td style="text-align:center;color:#e8b0b0" colspan="2" ><i class="material-icons  icon-red">sentiment_very_dissatisfied</i></td>
+    </tr>
+    <tr>
+    <td  >&nbsp;&nbsp; </td>
+    <td  >&nbsp;&nbsp;</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    <a onclick="abrir_modal2(\''.$nombre_barrio.'\',\'Curso Acompañamiento\',\''.$barrio.'\')" class="  btn-floating halfway-fab btn-small waves-effect waves-light '.$color.'"><i class="material-icons">edit</i></a>
     <a style="margin-right:12%" class="  tooltipped btn-floating halfway-fab btn-small waves-effect waves-light grey " data-position="bottom" data-tooltip="Gestión:&nbsp;\''.$ultima_gestion.'\'<br>'.$fecha_gestion.'"><i class="material-icons">remove_red_eye</i></a>
     </div>
     </div>
