@@ -26,7 +26,8 @@ if(isset($chart_llamamientos)){
     $gua=$array[5]['miembro_obispado']+$array[5]['presidente']+$array[5]['director']+$array[5]['pianista']+$array[5]['director_coro']+$array[5]['pianista_coro'];
     $rob=$array[6]['miembro_obispado']+$array[6]['presidente']+$array[6]['director']+$array[6]['pianista']+$array[6]['director_coro']+$array[6]['pianista_coro'];
     $ast2=$array[7]['miembro_obispado']+$array[7]['presidente']+$array[7]['director']+$array[7]['pianista']+$array[7]['director_coro']+$array[7]['pianista_coro'];
-    echo $ast1+$ast2+$bel+$bue+$env+$flo+$gua+$rob;
+    $sab=$array[8]['miembro_obispado']+$array[8]['presidente']+$array[8]['director']+$array[8]['pianista']+$array[8]['director_coro']+$array[8]['pianista_coro'];
+    echo $ast1+$ast2+$bel+$bue+$env+$flo+$gua+$rob+$sab;
   }
 }
 
@@ -43,16 +44,17 @@ if (isset($llamamientos)) {
     $gua=$array[5]['miembro_obispado']+$array[5]['presidente']+$array[5]['director']+$array[5]['pianista']+$array[5]['director_coro']+$array[5]['pianista_coro'];
     $rob=$array[6]['miembro_obispado']+$array[6]['presidente']+$array[6]['director']+$array[6]['pianista']+$array[6]['director_coro']+$array[6]['pianista_coro'];
     $ast2=$array[7]['miembro_obispado']+$array[7]['presidente']+$array[7]['director']+$array[7]['pianista']+$array[7]['director_coro']+$array[7]['pianista_coro'];
+    $sab=$array[8]['miembro_obispado']+$array[8]['presidente']+$array[8]['director']+$array[8]['pianista']+$array[8]['director_coro']+$array[8]['pianista_coro'];
     echo '<tbody>
     <tr>
     <td>Asturias I</td>
     <td>'.$ast1.'/6</td>
-    <td>'.seleccionar_icono_llamamiento($ast).'</i></td>
+    <td>'.seleccionar_icono_llamamiento($ast1).'</i></td>
     </tr>
     <tr>
     <td>Asturias II</td>
     <td>'.$ast2.'/6</td>
-    <td>'.seleccionar_icono_llamamiento($ast).'</i></td>
+    <td>'.seleccionar_icono_llamamiento($ast2).'</i></td>
     </tr>
     <tr>
     <td>Belén</td>
@@ -78,6 +80,10 @@ if (isset($llamamientos)) {
     <td>Robledo</td>
     <td>'.$rob.'/6</td>
     <td>'.seleccionar_icono_llamamiento($rob).'</i></td>    </tr>
+    <tr>
+    <td>Sabaneta</td>
+    <td>'.$sab.'/6</td>
+    <td>'.seleccionar_icono_llamamiento($sab).'</i></td>    </tr>
     </tbody>';
   }
 }
@@ -124,6 +130,10 @@ if (isset($coros)) {
     <td>Robledo</td>
     <td>'.seleccionar_icono_coro($yo[6]['coro_activo']).'</i></td>
     </tr>
+    <tr>
+    <td>Sabaneta</td>
+    <td>'.seleccionar_icono_coro($yo[8]['coro_activo']).'</i></td>
+    </tr>
     </tbody>';
   }
 }
@@ -169,6 +179,10 @@ if (isset($carga_inicial_curso_direccion)) {
     <td>Robledo</td>
     <td>'.seleccionar_icono_coro($yo[6]['curso_direccion_activo']).'</i></td>
     </tr>
+    <tr>
+    <td>Sabaneta</td>
+    <td>'.seleccionar_icono_coro($yo[8]['curso_direccion_activo']).'</i></td>
+    </tr>
     </tbody>';
   }
 }
@@ -213,6 +227,10 @@ if (isset($carga_inicial_curso_acompañamiento)) {
     <tr>
     <td>Robledo</td>
     <td>'.seleccionar_icono_coro($yo[6]['curso_acom_activo']).'</i></td>
+    </tr>
+    <tr>
+    <td>Sabaneta</td>
+    <td>'.seleccionar_icono_coro($yo[8]['curso_acom_activo']).'</i></td>
     </tr>
     </tbody>';
   }
@@ -828,6 +846,8 @@ function nombrar_barrio($n){
     return "Robledo";
     case '8':
     return "Asturias II";
+    case '9':
+    return "Sabaneta";
     break;
   }
 }

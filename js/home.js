@@ -45,7 +45,7 @@ function obtener_color(){
     timeout:10000,
     success:function(data){
       data=data.trim();
-     color_app=data;
+      color_app=data;
     }
   });
 }
@@ -62,7 +62,7 @@ function log_ingreso(){
     },
     timeout:10000,
     success:function(data){
-    console.log(data.trim());
+      console.log(data.trim());
     }
   });
 }
@@ -86,7 +86,7 @@ function chart_general(){
         var data = google.visualization.arrayToDataTable([
           ['5', 'H'],
           ['Ok',     parseInt(data_php)],
-          ['Falta',      (42-parseInt(data_php))]
+          ['Falta',      (54-parseInt(data_php))]
         ]);
         var options = {
           title: ' Consolidado Llammamientos Estaca Belén',
@@ -120,7 +120,7 @@ function chart_general1(){
         var data = google.visualization.arrayToDataTable([
           ['5', 'H'],
           ['Ok',     parseInt(datad)],
-          ['Falta',     7-parseInt(datad)]
+          ['Falta',     9-parseInt(datad)]
         ]);
         var options = {
           title: 'Consolidado coros de Barrio Estaca Belén',
@@ -154,7 +154,7 @@ function chart_general_curso_direccion(){
         var data = google.visualization.arrayToDataTable([
           ['5', 'H'],
           ['Ok',     parseInt(datad)],
-          ['Falta',     7-parseInt(datad)]
+          ['Falta',     9-parseInt(datad)]
         ]);
         var options = {
           title: 'Consolidado cursos de Dirección Musical',
@@ -188,7 +188,7 @@ function chart_general_curso_acom(){
         var data = google.visualization.arrayToDataTable([
           ['5', 'H'],
           ['Ok',     parseInt(datad)],
-          ['Falta',     7-parseInt(datad)]
+          ['Falta',     9-parseInt(datad)]
         ]);
         var options = {
           title: 'Consolidado cursos de Acompañamiento Musical',
@@ -295,8 +295,6 @@ function menu(item) {
       setTimeout(function() {
         jq("#contenedor_individual").html(datar[0]);
         jq('.tooltipped').tooltip();
-
-
         if (datar[2]=='3') {
           google.charts.load("current", {packages:["corechart"]});
           google.charts.setOnLoadCallback(drawChart);
@@ -386,6 +384,11 @@ function menu(item) {
       jq("#contenedor_titulo").html('Barrio - <em>Asturias II</em>');
     },1000);
     break;
+    case 9:
+    setTimeout(function () {
+      jq("#contenedor_titulo").html('Barrio - <em>Sabaneta</em>');
+    },1000);
+    break;
   }
   ocultar_todo();
   // jq("#contenedor_inicio").hide('slow');
@@ -406,7 +409,6 @@ function ocultar_todo(){
 function abrir_modal1(tipo,titulo,barrio,llamamiento) {
   jq(".cargando").show();
   if (tipo==0) {
-    // consultar estado actual estaca
     var datosformulario="consultar_estaca="+llamamiento;
     jq.ajax({
       url:"includes/home_includes.php",
@@ -456,32 +458,26 @@ function abrir_modal1(tipo,titulo,barrio,llamamiento) {
     jq("#contenedor_boton_modal1").html(' <a  class="modal-close waves-effect waves-green btn-flat">Cancelar</a> <a onclick="actualizar_llamamiento(1,\''+llamamiento+'\',\''+barrio+'\')" class="waves-effect waves-green btn-flat">Actualizar</a> <a onclick="quitar_llamamiento(1,\''+llamamiento+'\',\''+barrio+'\')" class="waves-effect waves-green btn-flat">Eliminar</a> ');
     jq(".cargando").hide();
   }
-
   var instance = M.Modal.getInstance(jq("#modal1"));
   instance.open();
   jq("#contenedor_titulo_modal1").text(titulo);
-  // M.toast({html:'el barrio es: '+barrio,classes:'purple'});
-  // M.toast({html:'el Llamamiento es: '+llamamiento,classes:'purple'});
 }
 
 function abrir_modal2(nombre,titulo,barrio) {
   jq(".cargando").show();
-var datosformulario='';
-console.log(titulo);
-switch (titulo) {
-  case 'Coro':
-  datosformulario="consultar_coro_barrio="+barrio;
-  break;
-  case 'Curso Dirección':
-  datosformulario="consultar_curso_direccion="+barrio;
-  break;
-  case 'Curso Acompañamiento':
-  datosformulario="consultar_curso_acomp="+barrio;
-  break;
-}
-
-
-
+  var datosformulario='';
+  console.log(titulo);
+  switch (titulo) {
+    case 'Coro':
+    datosformulario="consultar_coro_barrio="+barrio;
+    break;
+    case 'Curso Dirección':
+    datosformulario="consultar_curso_direccion="+barrio;
+    break;
+    case 'Curso Acompañamiento':
+    datosformulario="consultar_curso_acomp="+barrio;
+    break;
+  }
   jq.ajax({
     url:"includes/home_includes.php",
     type:"POST",
@@ -520,8 +516,6 @@ switch (titulo) {
 }
 
 function actualizar_coro(indice_barrio,token){
-
-
   var datosformulario='';
   var v=0;
   if (jq("#nota_gestion2").val()=='') {
@@ -581,7 +575,6 @@ function actualizar_coro(indice_barrio,token){
 function actualizar_llamamiento(tipo,llamamiento,indice_barrio) {
   indice_barrio++;
   console.log("El indice de Barrio es: " +indice_barrio);
-
   var nombre=jq("#nombre").val();
   var celular=jq("#celular").val();
   var nota_gestion=jq("#nota_gestion").val();
@@ -634,7 +627,6 @@ function actualizar_llamamiento(tipo,llamamiento,indice_barrio) {
               instance.close();
             }else{
               M.toast({html:res[1],classes:'red'});
-
             }
           }
         });
@@ -645,7 +637,6 @@ function actualizar_llamamiento(tipo,llamamiento,indice_barrio) {
 
   }else{
     M.toast({html:'faltan datos',classes:'red'});
-
   }
 }
 
@@ -752,11 +743,11 @@ function quitar_llamamiento(tipo,llamamiento,barrio){
 }
 
 function ingresos(){
-    if (jq("#gestor").val()=='john.quintero') {
-        location.href ="ingresos.php";
-    }
+  if (jq("#gestor").val()=='john.quintero') {
+    location.href ="ingresos.php";
+  }
 }
 
 function enviar_agestion(){
-   window.location='gestiones.php?gestor='+jq("#gestor").val();
+  window.location='gestiones.php?gestor='+jq("#gestor").val();
 }

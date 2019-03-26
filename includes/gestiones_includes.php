@@ -25,11 +25,11 @@ if (isset($token_gestiones)) {
             <table  >
             <tbody style="color:grey">
             <tr >
-            <td  >Item:</td>
+            <td  >Cargo:</td>
             <td  ><b>'.$registro['item'].'</b></td>
             </tr>
             <tr>
-            <td  >Categoría:</td>
+            <td  >Barrio:</td>
             <td  >'.$registro['categoria'].'</td>
             </tr>
             <tr>

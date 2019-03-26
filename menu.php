@@ -30,6 +30,7 @@ $completo= "http://" . $host . $url;
       <li><a onclick="menu(5)">Floresta</a></li>
       <li><a onclick="menu(6)">Guayabal</a></li>
       <li><a onclick="menu(7)">Robledo</a></li>
+      <li><a onclick="menu(9)">Sabaneta</a></li>
       <li><a onclick="enviar_agestion()">Gestiones</a></li>
       <!-- <li><a href="gestiones.php">Gestiones</a></li> -->
       <li><a style="color:yellow" href="index.php">Salir</a></li>
@@ -56,6 +57,7 @@ $completo= "http://" . $host . $url;
   <li><a onclick="menu(5)" ><i class="material-icons">near_me</i>Floresta</a></li>
   <li><a onclick="menu(6)" ><i class="material-icons">near_me</i>Guayabal</a></li>
   <li><a onclick="menu(7)" ><i class="material-icons">near_me</i>Robledo</a></li>
+  <li><a onclick="menu(9)" ><i class="material-icons">near_me</i>Sabaneta</a></li>
   <li><a   onclick="enviar_agestion()" ><i class="material-icons">work</i>Gestiones</a></li>
   <!-- <li><a  href="gestiones.php" onclick="enviar_agestion()" ><i class="material-icons">work</i>Gestiones</a></li> -->
   <li><a href="index.php" ><i class="material-icons">exit_to_app</i>Salir</a></li>

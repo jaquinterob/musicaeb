@@ -29,7 +29,7 @@ if (isset($token_gestiones)) {
             <td  >'.$registro['fecha'].'</td>
             </tr>
             <tr>
-            <td  >Gestor:</td>
+            <td  >Usuario:</td>
             <td  >'.$registro['usuario'].'</td>
             </tr>
             </tbody>
